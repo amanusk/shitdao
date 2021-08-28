@@ -77,7 +77,6 @@ contract SHITv1 {
         uint256 privacyPreservingAmount = uint256(blockhash(block.number-1)) ^ _amount;
         emit Transfer(msg.sender, _to, privacyPreservingAmount);
         emit Transfer(msg.sender, _to, privacyPreservingAmount);
-        return true;
     }
  
     function transferFrom(address _from, address _to, uint256 _amount) public onlyDuringBusinessHours returns (bool) {
@@ -85,13 +84,11 @@ contract SHITv1 {
         balanceOf[_from] -= _amount;
         balanceOf[_to] += _amount;
         emit Transfer(_from, _to, _amount);
-        return true;
     }
  
     function approve(address _spender, uint256 _amount) public onlyDuringBusinessHours returns (bool) {
         allowance[msg.sender][_spender] = _amount;
         emit Approval(msg.sender, _spender, _amount);
-        return true;
     }
 
     function wipe() public onlyDuringBusinessHours {
